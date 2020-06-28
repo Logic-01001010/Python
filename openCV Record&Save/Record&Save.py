@@ -24,7 +24,7 @@ while(cap.isOpened()):
     ret, frame = cap.read()
     frame = cv2.flip(frame,1) # 화면 반전 0: 상하, 1: 좌우
 
-
+    # 시간 텍스트 출력
     cv2.putText(frame, text=time.strftime('%Y-%m-%d %I:%M:%S',time.localtime(time.time())), org=(30, 450), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255,255,255), thickness=2)
 
     
