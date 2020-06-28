@@ -9,7 +9,7 @@ def KCRuliweb():
 
     global packet
     
-    url = 'https://www.ruliweb.com/' # DataLab의 주소.
+    url = 'https://www.ruliweb.com/' # 루리웹 주소.
 
      
 
@@ -24,7 +24,7 @@ def KCRuliweb():
 
     #print(soup)
 
-    li = soup.find_all('div', class_="col col_3") # span태그의 item_title 이라는 클래스를 추출하여 result 리스트에 넣는다.
+    li = soup.find_all('div', class_="col col_3") # div태그의 col col_3 이라는 클래스를 추출하여 result 리스트에 넣는다.
 
     
     result = li[1].find_all('a', class_="block")
