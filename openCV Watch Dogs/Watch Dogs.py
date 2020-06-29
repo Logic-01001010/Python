@@ -7,6 +7,9 @@ cap.set(4, 1080)
 fc = 20.0
 codec = cv2.VideoWriter_fourcc('D', 'I', 'V', 'X')
 
+#얼굴 인식 캐스케이드 파일 읽는다
+face_cascade = cv2.CascadeClassifier('haarcascade_frontface.xml')
+
 count = 99
 
 while(cap.isOpened()):
@@ -24,12 +27,33 @@ while(cap.isOpened()):
     ret, frame = cap.read()
     #frame = cv2.flip(frame,1) # 화면 반전 0: 상하, 1: 좌우
 
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+
+
+
+    if len(faces) == True:
+        # 인식된 얼굴에 사각형을 출력한다
+        for (x,y,w,h) in faces:
+             cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,0),2)
+             cv2.putText(frame, text='Detected', org=(x, y), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(0,255,0), thickness=2)
+
+        # 시간 텍스트 출력
+        cv2.putText(frame, text=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())), org=(30, 450), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(0,255,0), thickness=2)
+
+        # 얼굴 캡쳐 이미지 저장
+        cv2.imwrite(time.strftime('%Y-%m-%d %H %M',time.localtime(time.time()))+".png", frame)
+       
+
     # 시간 텍스트 출력
     cv2.putText(frame, text=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())), org=(30, 450), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(0,255,0), thickness=2)
 
+
+    
+
     
     if ret==True:
-        cv2.imshow('Record&Save', frame)
+        cv2.imshow('Watch Dogs', frame)
         out.write(frame)
 
 
