@@ -16,16 +16,16 @@ while(cap.isOpened()):
         count = time.strftime('%H',time.localtime(time.time()))
         print('시간 변경 감지')
         
-        out = cv2.VideoWriter(time.strftime('%Y-%m-%d %I시 %M분',time.localtime(time.time()))+'.avi', codec, fc, (int(cap.get(3)), int(cap.get(4))))
+        out = cv2.VideoWriter(time.strftime('%Y-%m-%d %H시 %M분',time.localtime(time.time()))+'.avi', codec, fc, (int(cap.get(3)), int(cap.get(4))))
 
-        print('파일 생성:',time.strftime('%Y-%m-%d %I시 %M분',time.localtime(time.time()))+'.avi')
+        print('파일 생성:',time.strftime('%Y-%m-%d %H시 %M분',time.localtime(time.time()))+'.avi')
 
     
     ret, frame = cap.read()
     frame = cv2.flip(frame,1) # 화면 반전 0: 상하, 1: 좌우
 
     # 시간 텍스트 출력
-    cv2.putText(frame, text=time.strftime('%Y-%m-%d %I:%M:%S',time.localtime(time.time())), org=(30, 450), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255,255,255), thickness=2)
+    cv2.putText(frame, text=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())), org=(30, 450), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(0,255,0), thickness=2)
 
     
     if ret==True:
