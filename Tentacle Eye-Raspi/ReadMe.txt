@@ -1,2 +1,2 @@
 [needs]
-sudo apt install opencv-python
+sudo apt install python-opencv
