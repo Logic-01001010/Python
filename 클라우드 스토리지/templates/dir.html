@@ -1,0 +1,18 @@
+<html>
+   <body>
+
+      <nav>
+        <div>
+          <a href="/">메인으로 가기</a>
+        </div>
+      </nav>
+
+        <div id='main'>
+	        <ul>
+	            {% for value in values %}
+	            <li><a href="uploads/{{ value }}" download="">{{ value }}</a> <a href="del/{{ value }}" name="delete">[삭제]</a></li>
+	            {% endfor %}
+	        </ul>
+        </div>
+   </body>
+</html>
